@@ -47,7 +47,6 @@ public class OceanWorld
 
 
         eventBus.addListener(this::setup);
-        eventBus.addListener(this::clientSetup);
 
 
 
@@ -60,9 +59,4 @@ public class OceanWorld
         // some preinit cod
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.SEA_PORTAL.get(), RenderType.translucent());
-
-    }
 }
