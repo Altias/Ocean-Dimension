@@ -28,6 +28,8 @@ public class PortalOpen extends Item {
         if(context.getPlayer() != null) {
             if(context.getPlayer().level.dimension() == DeepSea.DIM_KEY
                     || context.getPlayer().level.dimension() == Level.OVERWORLD) {
+
+
                 for(Direction direction : Direction.Plane.VERTICAL) {
                     BlockPos framePos = context.getClickedPos().relative(direction);
                     if(((SeaPortalBlock) ModBlocks.SEA_PORTAL.get()).trySpawnPortal(context.getLevel(), framePos)) {
@@ -37,6 +39,8 @@ public class PortalOpen extends Item {
                     }
                     else return InteractionResult.FAIL;
                 }
+
+
             }
         }
         return InteractionResult.FAIL;

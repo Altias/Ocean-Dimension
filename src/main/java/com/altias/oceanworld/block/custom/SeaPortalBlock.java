@@ -112,7 +112,11 @@ public class SeaPortalBlock extends Block {
 
     @Override
     public void entityInside(BlockState state, Level worldIn, BlockPos pos, Entity entity) {
+
+        //System.out.println("Entity in portal!");
         if(!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
+
+
             if(entity.isOnPortalCooldown()) {
                 entity.setPortalCooldown();
             }
@@ -125,7 +129,9 @@ public class SeaPortalBlock extends Block {
                     MinecraftServer minecraftserver = entityWorld.getServer();
                     ResourceKey<Level> destination = entity.level.dimension() == DeepSea.DIM_KEY
                             ? Level.OVERWORLD : DeepSea.DIM_KEY;
+
                     if(minecraftserver != null) {
+                      //  System.out.println("The world is real");
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
                             entity.level.getProfiler().push("sea_portal");
@@ -133,6 +139,7 @@ public class SeaPortalBlock extends Block {
                             entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
                             entity.level.getProfiler().pop();
                         }
+
                     }
                 }
             }

@@ -10,7 +10,7 @@ import net.minecraft.world.level.dimension.DimensionType;
 public class DeepSea {
     public static final ResourceKey<Level> DIM_KEY = ResourceKey.create(Registry.DIMENSION_REGISTRY,
 
-            new ResourceLocation(OceanWorld.MOD_ID,"dim"));
+            new ResourceLocation(OceanWorld.MOD_ID,"deepsea"));
 
     public static final ResourceKey<DimensionType> DIM_TYPE =
             ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY,DIM_KEY.getRegistryName());
