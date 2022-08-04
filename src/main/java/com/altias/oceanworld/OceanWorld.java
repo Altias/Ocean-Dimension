@@ -1,10 +1,12 @@
 package com.altias.oceanworld;
 
 import com.altias.oceanworld.block.ModBlocks;
+import com.altias.oceanworld.config.OceanWorldCommonConfig;
 import com.altias.oceanworld.item.ModItems;
 import com.altias.oceanworld.villager.ModPOIs;
 import com.altias.oceanworld.world.dimension.DeepSea;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.worldselection.WorldGenSettingsComponent;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
@@ -14,7 +16,9 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -24,6 +28,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 
+import javax.json.JsonObject;
+import java.awt.*;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -48,6 +54,11 @@ public class OceanWorld
 
         eventBus.addListener(this::setup);
 
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OceanWorldCommonConfig.SPEC, "oceanworld-common.toml");
+
+
+
+
 
 
         // Register ourselves for server and other game events we are interested in
@@ -57,6 +68,8 @@ public class OceanWorld
     private void setup(final FMLCommonSetupEvent event)
     {
         // some preinit cod
+
+
     }
 
 }

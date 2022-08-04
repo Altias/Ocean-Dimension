@@ -15,9 +15,11 @@ public class DeepSea {
     public static final ResourceKey<DimensionType> DIM_TYPE =
             ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY,DIM_KEY.getRegistryName());
 
+
+
     public static void register()
     {
-        System.out.println("Registering Deep Ocean for " + OceanWorld.MOD_ID);
+        System.out.println("Registering Deep Sea for " + OceanWorld.MOD_ID);
     }
 
 
