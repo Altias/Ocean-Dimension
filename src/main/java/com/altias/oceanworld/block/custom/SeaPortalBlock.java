@@ -127,7 +127,7 @@ public class SeaPortalBlock extends Block {
                 Level entityWorld = entity.level;
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Dimension> destination = entity.level.dimension() == DeepSea.DIM_KEY
+                    ResourceKey<Level> destination = entity.getLevel().dimension() == DeepSea.DIM_KEY
                             ? Level.OVERWORLD : DeepSea.DIM_KEY;
 
                     if(minecraftserver != null) {

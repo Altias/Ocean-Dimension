@@ -10,12 +10,10 @@ import net.minecraft.world.level.dimension.DimensionType;
 import java.awt.*;
 
 public class DeepSea {
-    public static final ResourceKey<Dimension> DIM_KEY = registerKey("deepsea");
+    public static final ResourceKey<Level> DIM_KEY = registerKey("deepsea");
 
 
-    public static final ResourceKey<DimensionType> DIM_TYPE = registerTypeKey("deepseatype");
-
-    public static ResourceKey<Dimension> registerKey(String name) {
+    public static ResourceKey<Level> registerKey(String name) {
         return ResourceKey.create(Registries.DIMENSION, new ResourceLocation(OceanWorld.MOD_ID, name));
     }
 
