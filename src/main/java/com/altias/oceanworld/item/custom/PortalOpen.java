@@ -17,7 +17,6 @@ import net.minecraft.world.level.Level;
 public class PortalOpen extends Item {
     public PortalOpen() {
         super(new Properties()
-                .tab(CreativeModeTab.TAB_MISC)
                 .stacksTo(1)
                 .rarity(Rarity.RARE)
         );

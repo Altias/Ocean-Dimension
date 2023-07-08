@@ -29,10 +29,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Random;
 
 public class SeaPortalBlock extends Block {
@@ -45,7 +46,6 @@ public class SeaPortalBlock extends Block {
                 .strength(-1F)
                 .noCollission()
                 .lightLevel((state) -> 10)
-                .noDrops()
         );
         registerDefaultState(stateDefinition.any().setValue(AXIS, Direction.Axis.X));
     }
@@ -127,7 +127,7 @@ public class SeaPortalBlock extends Block {
                 Level entityWorld = entity.level;
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Level> destination = entity.level.dimension() == DeepSea.DIM_KEY
+                    ResourceKey<Dimension> destination = entity.level.dimension() == DeepSea.DIM_KEY
                             ? Level.OVERWORLD : DeepSea.DIM_KEY;
 
                     if(minecraftserver != null) {
@@ -147,7 +147,6 @@ public class SeaPortalBlock extends Block {
     }
 
     @OnlyIn(Dist.CLIENT)
-    @Override
     public void animateTick(BlockState stateIn, Level worldIn, BlockPos pos, Random rand) {
         if (rand.nextInt(100) == 0) {
             worldIn.playLocalSound((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D,

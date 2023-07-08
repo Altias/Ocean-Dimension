@@ -1,19 +1,27 @@
 package com.altias.oceanworld.world.dimension;
 
 import com.altias.oceanworld.OceanWorld;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 
+import java.awt.*;
+
 public class DeepSea {
-    public static final ResourceKey<Level> DIM_KEY = ResourceKey.create(Registry.DIMENSION_REGISTRY,
+    public static final ResourceKey<Dimension> DIM_KEY = registerKey("deepsea");
 
-            new ResourceLocation(OceanWorld.MOD_ID,"deepsea"));
 
-    public static final ResourceKey<DimensionType> DIM_TYPE =
-            ResourceKey.create(Registry.DIMENSION_TYPE_REGISTRY,DIM_KEY.getRegistryName());
+    public static final ResourceKey<DimensionType> DIM_TYPE = registerTypeKey("deepseatype");
+
+    public static ResourceKey<Dimension> registerKey(String name) {
+        return ResourceKey.create(Registries.DIMENSION, new ResourceLocation(OceanWorld.MOD_ID, name));
+    }
+
+    public static ResourceKey<DimensionType> registerTypeKey(String name) {
+        return ResourceKey.create(Registries.DIMENSION_TYPE, new ResourceLocation(OceanWorld.MOD_ID, name));
+    }
 
 
 

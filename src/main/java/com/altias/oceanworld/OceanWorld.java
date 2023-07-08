@@ -6,13 +6,14 @@ import com.altias.oceanworld.item.ModItems;
 import com.altias.oceanworld.villager.ModPOIs;
 import com.altias.oceanworld.world.dimension.DeepSea;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.gui.screens.worldselection.WorldGenSettingsComponent;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -63,6 +64,7 @@ public class OceanWorld
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+        eventBus.addListener(this::addCreative);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -70,6 +72,14 @@ public class OceanWorld
         // some preinit cod
 
 
+    }
+
+    private void addCreative(CreativeModeTabEvent.BuildContents event)
+    {
+        if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+        {
+            event.accept(ModItems.SEA_KEY);
+        }
     }
 
 }
