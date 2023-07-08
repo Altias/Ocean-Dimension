@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
@@ -42,7 +41,7 @@ public class SeaPortalBlock extends Block {
     protected static final VoxelShape Z_AABB = Block.box(6.0D, 0.0D, 0.0D, 10.0D, 16.0D, 16.0D);
 
     public SeaPortalBlock() {
-        super(Properties.of(Material.PORTAL)
+        super(Properties.copy(Blocks.NETHER_PORTAL)
                 .strength(-1F)
                 .noCollission()
                 .lightLevel((state) -> 10)
@@ -121,23 +120,23 @@ public class SeaPortalBlock extends Block {
                 entity.setPortalCooldown();
             }
             else {
-                if(!entity.level.isClientSide && !pos.equals(entity.portalEntrancePos)) {
+                if(!entity.level().isClientSide && !pos.equals(entity.portalEntrancePos)) {
                     entity.portalEntrancePos = pos.immutable();
                 }
-                Level entityWorld = entity.level;
+                Level entityWorld = entity.level();
                 if(entityWorld != null) {
                     MinecraftServer minecraftserver = entityWorld.getServer();
-                    ResourceKey<Level> destination = entity.getLevel().dimension() == DeepSea.DIM_KEY
+                    ResourceKey<Level> destination = entity.level().dimension() == DeepSea.DIM_KEY
                             ? Level.OVERWORLD : DeepSea.DIM_KEY;
 
                     if(minecraftserver != null) {
                       //  System.out.println("The world is real");
                         ServerLevel destinationWorld = minecraftserver.getLevel(destination);
                         if(destinationWorld != null && minecraftserver.isNetherEnabled() && !entity.isPassenger()) {
-                            entity.level.getProfiler().push("sea_portal");
+                            entity.level().getProfiler().push("sea_portal");
                             entity.setPortalCooldown();
                             entity.changeDimension(destinationWorld, new ModTeleporter(destinationWorld));
-                            entity.level.getProfiler().pop();
+                            entity.level().getProfiler().pop();
                         }
 
                     }

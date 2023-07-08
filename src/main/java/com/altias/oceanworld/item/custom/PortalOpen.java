@@ -25,8 +25,8 @@ public class PortalOpen extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         if(context.getPlayer() != null) {
-            if(context.getPlayer().level.dimension() == DeepSea.DIM_KEY
-                    || context.getPlayer().level.dimension() == Level.OVERWORLD) {
+            if(context.getPlayer().level().dimension() == DeepSea.DIM_KEY
+                    || context.getPlayer().level().dimension() == Level.OVERWORLD) {
 
 
                 for(Direction direction : Direction.Plane.VERTICAL) {

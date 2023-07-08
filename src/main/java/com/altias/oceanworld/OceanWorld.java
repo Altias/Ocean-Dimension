@@ -13,7 +13,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -74,9 +74,9 @@ public class OceanWorld
 
     }
 
-    private void addCreative(CreativeModeTabEvent.BuildContents event)
+    private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if(event.getTab() == CreativeModeTabs.TOOLS_AND_UTILITIES)
+        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES)
         {
             event.accept(ModItems.SEA_KEY);
         }
